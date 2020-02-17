@@ -1,1 +1,256 @@
-{}
+// {
+// Place your snippets for dart here. Each snippet is defined under a snippet name and has a prefix, body and 
+// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+// same ids are connected.
+// Example:
+// "Print to console": {
+// 	"prefix": "log",
+// 	"body": [
+// 		"console.log('$1');",
+// 		"$2"
+// 	],
+// 	"description": "Log output to console"
+// }
+// }
+{
+	"Copyright": {
+		"prefix": ["zcr","zcr1"],
+		"body": [
+			"//",
+			"// $TM_FILENAME 文件名",
+			"// ${WORKSPACE_NAME:merchant_flutter}  项目名",// merchant_flutter,zn_flu_bmod_base,zn_flu_bmod_lgt,zn_flu_bmod_sev,zn_flu_bmod_fin,zn_flu_bmod_sal,zn_flu_utl_common|
+			"//",
+			"// Copyright $CURRENT_YEAR Znlh. All rights reserved.",
+			"// Created by 吴雅楠 on $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE.",
+			"$0"
+		],
+		"description": "copyright 添加作者和时间注释"
+	},
+	"ListViewBuiler": {
+		"prefix": "zlvb",//唤醒代码块的命令
+		"body": [
+			"\tListView.builder(",
+			"\titemCount: ${1:0},",//$x是占位符, $x,${x:默认值}，${x|a,b,c|},多个$x之间通过tab健切换
+			"\titemBuilder: (BuildContext context, int index) {",
+			"\t\treturn ${2:Container}();",
+			"\t})$0"
+		],//代码块的主体
+		"description": "ListView builder的方式创建"//代码块的介绍
+	},
+	"GridView":{
+		"prefix": "zgvb",
+		"body": [
+			"GridView.builder(",
+			"\tgridDelegate: SliverGridDelegateWithFixedCrossAxisCount(",
+			"\tcrossAxisCount: ${1:2},",
+			"\tmainAxisSpacing: ${2:10},",
+			"\tchildAspectRatio: ${3:1},",
+			"\tcrossAxisSpacing: ${4:10}),",
+			"\titemBuilder: (BuildContext context, int index) {",
+			"\t\treturn ${5:Container()};",
+			"\t},",
+			"\titemCount: ${6:0},",
+			"\tphysics: ${7|NeverScrollableScrollPhysics(),ClampingScrollPhysics(),BouncingScrollPhysics()|},",//默认情况下会根据不然通平台设置不同的滑动动画效果,NeverScrollableScrollPhysics 禁用滑动;ClampingScrollPhysics：Android下微光效果;BouncingScrollPhysics：iOS下弹性效果。
+			"\tshrinkWrap: ${8|true,false|},",
+			"\t)$0",
+		],"description": "通过builder()构造函数创建GridView"
+	},
+	"NavigatorPush":{
+		"prefix": "znp",
+		"body": [
+			"Navigator.push(${1:context},",
+			"\tMaterialPageRoute(builder: (${1:context}) {",
+			"\t\treturn $2;",
+			"\t})).then((${3:_}){",
+			"",
+			"});",
+		],
+		"description": "跳入新页面"
+	}, 
+	"ScreenWidth":{
+		"prefix": "zsw",
+		"body": [
+			"MediaQuery.of(${1:context}).size.width;",
+			"$0"
+		],"description": "屏幕宽度"
+	},
+	"ScreenHeight":{
+		"prefix": "zsh",
+		"body": [
+			"MediaQuery.of(${1:context}).size.height;",
+			"$0"
+		],"description": "屏幕高度"
+	},
+	"StatelessWidget": {
+		"prefix": "zsl",
+		"body": [
+			"class ${1:WidgetName} extends StatelessWidget {",
+			"\t@override",
+			"\tWidget build(BuildContext context) {",
+			"\t\treturn ${2:Container}();",
+			"\t}",
+			"}"
+		],
+		"description": "StatelessWidget的初始化创建"
+	},
+	"StatefulWidget": {
+		"prefix": "zsf",
+		"body": [
+			"class ${1:WidgetName} extends StatefulWidget {",
+			"\t@override",
+			"\t_${1:WidgetName}State createState() => _${1:WidgetName}State();",
+			"}\n",
+			"class _${1:WidgetName}State extends State<${1:WidgetName}> {",
+			"\t@override",
+			"\tWidget build(BuildContext context) {",
+			"\t\treturn ${2:Container}();",
+			"\t}",
+			"}$0"
+		],
+		"description": "创建StatefulWidget"
+	},
+	"BlocBasePage": {
+		"prefix": "zbbp",
+		"body": [
+			"class ${1:WidgetName}Page extends BlocBasePage {",
+				"\t${1:WidgetName}Page();",
+				"\t@override",
+				"\tState<StatefulWidget> createState() {",
+				"\t\treturn $1PageState();",
+				"\t}",
+				"}",
+				"",
+				"class ${1:WidgetName}PageState extends BlocBaseState<${1:WidgetName}Page> {",
+		
+				"\t@override",
+				"\tvoid initState() {",
+				"\t\tsuper.initState();",
+				"\t}",
+				"",
+				"\t@override",
+				"\tWidget getBody() {",
+				"\t\treturn StreamBuilder(",
+				"\t\t\t\tstream: ${2:null},",
+				"\t\t\t\tbuilder: (context, snapshot) {",
+				"\t\t\t\treturn ${3:Container}();",
+				"\t\t\t}",
+				"\t\t);",
+				"\t}",
+				"",
+				"\t@override",
+				"\tString getTitle() {",
+				"\t\treturn '${4:标题}';",
+				"\t}",
+				"\t@override",
+				"\tList<ActionsModel> getActions() {",
+				"\t\treturn [${5:ActionsModel()}];",
+				"\t}",
+				"}",
+				"$0"
+				
+		],
+		"description": "创建 BlocPage"
+	},
+	"BlocBase":{
+		"prefix": "zbb",
+		"body": [
+			"class ${1:BlocBaseName}Bloc extends BlocBase {",
+			"\t${1:BlocBaseName}Bloc() {",
+			"\t}",
+			"",
+			"\tBehaviorSubject<${2:int}> ${3:subject} = BehaviorSubject<${2:int}>();",
+			"\tStream get stream => ${3:subject}.stream;",
+			"\t@override",
+			"\tvoid dispose() {",
+			"\t\t${3:subject}.close();",
+			"\t}",
+			"}",
+			"$0"
+		],
+		"description": "创建 Bloc"
+	},
+	"ShowAlert":{
+		"prefix": "zsa",
+		"body": [
+			"ZNAlert().showAlert(",
+			"\tcontext: ${1:context},",
+			"\talertTitle: Text('${2:title}'),",
+			"\talertContent: Text('${3:content}'),",
+			"\tfristText: Text('${4:buttonTitle}'),",
+			"\tsecondText: Text('${5:buttonTitle}'),",
+			"\tcallBackFunc: (value) {",
+			"",
+			"\t}",
+			");",
+			"$0"
+		],
+		"description": "创建弹框"
+	},
+	"RefreshList":{
+		"prefix": "zsfl",
+		"body": [
+			"SmartRefresher(",
+			"\tenablePullDown: ${1:true},",
+			"\tenablePullUp: ${2:true},",
+			"\tcontroller: ${3:null},",
+			"\tonRefresh: ${4:(bool up){}},",
+			"\theaderBuilder: buildDefaultHeader,",
+			"\tfooterBuilder: buildDefaultFooter,",
+			"\tfooterConfig: LoadConfig(),",
+			"\tonOffsetChange: ${5:(bool up, double offset){}},",
+			"\tchild: ListView.builder(",
+			"\t\treverse: ${6:false},",
+			"\t\titemCount: ${7:0},",
+			"\t\titemBuilder: (context, index) {",
+			"\t\t\treturn  ${8:Container}();",
+			"\t\t},",
+			"\t)",
+			")$0",
+		],"description": "创建上拉下拉刷新"
+	},
+	"Mock":{
+		"prefix": "zmc",
+		"body": [
+			"HttpResult result;",
+			"// mock数据",
+			"bool isDebug = await ZnlhFlutterData.getDebug;",
+			"ZNMockClient.httpHost = \"${1:httpHost}\";",
+			"if (isDebug) {",
+			"\tresult = await ZNMockClient.sendRequest(HttpType.${2|GET,POST_NET,POST_FORM|}, \"${3:url}\", params: ${4:{}});",
+			"}else {}",
+			"$0"
+		],
+		"description": "mock数据的网络请求"
+	},
+	"Request":{
+		"prefix": "zrq",
+		"body": [
+			"HttpResult result;",
+			"result = await ZNHttpClient.sendRequest(HttpType.${1|GET,POST_NET,POST_FORM|},\"${2:url}\",params: ${3:{}};",
+			"if(result != null && result.data != null){",
+			"\tdebugPrint(\"result.data\"+znsStr(result.data));",
+			"\tif (result.errCode == 0) {",
+			"",
+			"\t}else{",
+			"\t\t//ZNShowToast.showToast(znsStr(result.message));",
+			"\t}",
+			"}",
+			"$0"
+		],
+		"description": "网络请求",
+	},
+	// "Switch":{
+	// 	"prefix": "zsw",
+	// 	"body": [
+	// 		"switch (${1:condition}){",
+	// 		"\tcase ${2:reson}: {",
+	// 		"\t$3",
+	// 		"\tbreak;",
+	// 		"\t}",
+	// 		"\tdefault:",
+	// 		"}$0"
+	// 	],
+	// 	"description": "switch 创建"
+	// },
+}

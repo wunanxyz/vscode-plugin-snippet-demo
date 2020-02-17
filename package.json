@@ -1,20 +1,55 @@
 {
-    "name": "vscode-extension-demo",
-    "displayName": "vscode-extension-demo",
-    "description": "demo",
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.42.0"
-    },
-    "categories": [
-        "Snippets"
-    ],
-    "contributes": {
-        "snippets": [
-            {
-                "language": "dart",
-                "path": "./snippets/snippets.json"
-            }
-        ]
-    }
+	"name": "vscode-extension-demo",
+	"displayName": "VSCode插件demo",
+	"description": "VSCode插件demo集锦",
+	"keywords": ["vscode", "plugin", "demo"],
+	"version": "1.0.0",
+	"publisher": "wunan",
+	"engines": {
+		"vscode": "^1.27.0"
+	},
+	"categories": [
+		"Other", "Snippets"
+	],
+	"icon": "images/icon.png",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "vscode-plugin-demo",
+			"properties": {
+				"vscodePluginDemo.yourName": {
+					"type": "string",
+					"default": "guest",
+					"description": "你的名字"
+				},
+				"vscodePluginDemo.showTip": {
+					"type": "boolean",
+					"default": true,
+					"description": "是否在每次启动时显示欢迎提示！"
+				}
+			}
+		},
+		"snippets": [{
+				"language": "dart",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "javascript",
+				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "html",
+				"path": "./snippets/html.json"
+			}
+		]
+	},
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"bugs": {
+		"url": "https://github.com/wunanxyz/vscode-plugin-snippet-demo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wunanxyz/vscode-plugin-snippet-demo"
+	},
+	"homepage": "https://github.com/wunanxyz/vscode-plugin-snippet-demo/blob/master/README.md"
 }
